@@ -5,6 +5,8 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from apps.core.views import AboutListCreateApiView
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Maktab API",
@@ -18,11 +20,15 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/auth/', include('rest_framework.urls')),
+    # path('admin/', admin.site.urls),
+    # path('api/auth/', include('rest_framework.urls')),
 
     # blog api
-    path('api/', include('apps.blog.urls')),
+    # path('api/', include('apps.blog.urls')),
+
+
+    # core api
+    path('api/about', AboutListCreateApiView.as_view()),
 
     # open api
     path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
